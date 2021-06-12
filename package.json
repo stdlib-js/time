@@ -21,7 +21,6 @@
   },
   "types": "./docs/types",
   "scripts": {
-    "benchmark": "make benchmark",
     "test": "make test",
     "test-cov": "make test-cov",
     "examples": "make examples"

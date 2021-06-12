@@ -16,22 +16,99 @@
 # limitations under the License.
 #/
 
-# COMMANDS #
+# USER VARIABLES #
 
-# Define whether delete operations should be safe (i.e., deleted items are sent to trash, rather than permanently deleted):
-SAFE_DELETE ?= false
-
-# Define the delete command:
-ifeq ($(SAFE_DELETE), true)
-	# FIXME: -rm -rf
-	DELETE := -rm
-	DELETE_FLAGS := -rf
+ifndef VERBOSE
+	QUIET := @
 else
-	DELETE ?= -rm
-	DELETE_FLAGS ?= -rf
+	QUIET :=
 endif
 
-# VARIABLES #
+# Indicate whether to "fast" fail when linting, running tests, etc:
+ifndef FAST_FAIL
+	FAIL_FAST := true
+else
+ifeq ($(FAST_FAIL), 0)
+	FAIL_FAST := false
+else
+	FAIL_FAST := true
+endif
+endif
+
+# Define the `NODE_PATH` environment variable:
+NODE_PATH ?=
+
+# Define the `NODE_ENV` environment variable:
+NODE_ENV ?=
+
+
+# INTERNAL VARIABLES #
+
+# Instruct make to warn us when we use an undefined variable (e.g., misspellings).
+MAKEFLAGS += --warn-undefined-variables
+
+# Define the default target:
+.DEFAULT_GOAL := all
+
+# Define the `SHELL` variable to avoid issues on systems where the variable may be inherited from the environment.
+#
+# ## Notes
+#
+# -   We use `bash` so that we can use `pipefail`.
+#
+#
+# [1]: https://www.gnu.org/prep/standards/html_node/Makefile-Basics.html#Makefile-Basics
+# [2]: http://clarkgrubb.com/makefile-style-guide
+SHELL := bash
+
+# Define shell flags.
+#
+# ## Notes
+#
+# -   `.SHELLFLAGS` was introduced in GNU Make 3.82 and has no effect on the version of GNU Make installed on Mac OS X, which is 3.81.
+# -   The `-e` flag causes `bash` to exit immediately if a `bash` executed command fails.
+# -   The `-u` flag causes `bash` to exit with an error message if a variable is accessed without being defined.
+# -   The `pipefail` option specifies that, if any of the commands in a pipeline fail, the entire pipeline fails. Otherwise the return value of a pipeline is the return value of the last command.
+# -   The `-c` flag is in the default value of `.SHELLFLAGS`, which must be preserved, as this is how `make` passes the script to be executed to `bash`.
+#
+.SHELLFLAGS := -eu -o pipefail -c
+
+# Remove targets if its recipe fails.
+#
+# ## Notes
+#
+# -   Mentioning this target anywhere in a Makefile prevents a user from re-running make and using an incomplete or invalid target.
+# -   When debugging, it may be necessary to comment this line out so the incomplete or invalid target can be inspected.
+#
+# [1]: https://www.gnu.org/software/make/manual/html_node/Special-Targets.html
+.DELETE_ON_ERROR:
+
+# Remove all the default suffixes, preferring to define all rules explicitly.
+#
+# [1]: https://www.gnu.org/software/make/manual/html_node/Suffix-Rules.html#Suffix-Rules
+# [2]: https://www.gnu.org/software/make/manual/html_node/Suffix-Rules.html#Suffix-Rules
+.SUFFIXES:
+
+# Determine the OS ([1][1], [2][2]).
+#
+# [1]: https://en.wikipedia.org/wiki/Uname#Examples
+# [2]: http://stackoverflow.com/a/27776822/2225624
+OS ?= $(shell uname)
+ifneq (, $(findstring MINGW,$(OS)))
+	OS := WINNT
+else
+ifneq (, $(findstring MSYS,$(OS)))
+	OS := WINNT
+else
+ifneq (, $(findstring CYGWIN,$(OS)))
+	OS := WINNT
+else
+ifneq (, $(findstring Windows_NT,$(OS)))
+	OS := WINNT
+endif
+endif
+endif
+endif
 
 # Determine the filename:
 this_file := $(lastword $(MAKEFILE_LIST))
@@ -45,45 +122,27 @@ this_dir := $(patsubst %/,%,$(this_dir))
 # Determine root directory:
 ROOT_DIR = $(this_dir)
 
+# Define the root build directory:
+BUILD_DIR ?= $(ROOT_DIR)/build
+
+# Define the root directory for storing distributable files:
+DIST_DIR ?= $(ROOT_DIR)/dist
+
+# Define the root directory for storing temporary files:
+TMP_DIR ?= $(ROOT_DIR)/tmp
+
+# Define the directories for writing reports, including code coverage:
 REPORTS_DIR ?= $(ROOT_DIR)/reports
-
 COVERAGE_DIR ?= $(REPORTS_DIR)/coverage
-
-ifndef VERBOSE
-	QUIET := @
-else
-	QUIET :=
-endif
-
-# Define the command for `node`:
-ifdef NODE
-	node := $(NODE)
-else
-	node := node
-endif
-
-# Define the `NODE_PATH` environment variable:
-ifdef NODE_PATH
-	node_path := $(NODE_PATH)
-else
-	node_path :=
-endif
-
-# On Mac OSX, in order to use `|` and other regular expression operators, we need to use enhanced regular expression syntax (-E); see https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man7/re_format.7.html#//apple_ref/doc/man/7/re_format.
-ifeq ($(OS), Darwin)
-	find_kernel_prefix := -E
-else
-	find_kernel_prefix :=
-endif
-
-# Note: we reference the `bin` file directly in order to support using `istanbul` for code coverage on Windows (https://github.com/gotwarlost/istanbul#usage-on-windows)
-JAVASCRIPT_TEST ?= $(NODE_MODULES)/tape/bin/tape
 
 # Define the top-level directory containing node module dependencies:
 NODE_MODULES ?= $(ROOT_DIR)/node_modules
 
 # Define the top-level directory containing node module executables:
 BIN_DIR ?= $(NODE_MODULES)/.bin
+
+# Define the path to the root `package.json`:
+ROOT_PACKAGE_JSON ?= $(ROOT_DIR)/package.json
 
 # Define the folder name convention for source files requiring compilation:
 SRC_FOLDER ?= src
@@ -93,15 +152,6 @@ DOCUMENTATION_FOLDER ?= docs
 
 # Define the folder name convention for configuration files:
 CONFIG_FOLDER ?= etc
-
-# Define the root build directory:
-BUILD_DIR ?= $(ROOT_DIR)/build
-
-# Define the path to the `tap-spec` executable.
-TAP_REPORTER ?= $(BIN_DIR)/tap-spec
-
-# Define the path to the `tap-summary` executable.
-TAP_SUMMARY ?= $(BIN_DIR)/tap-summary
 
 # Define the folder name convention for benchmark files:
 BENCHMARKS_FOLDER ?= benchmark
@@ -139,83 +189,59 @@ EXAMPLES_PATTERN ?= *.js
 # Define a filename pattern for test files:
 TESTS_PATTERN ?= test*.js
 
-# Define the command flags:
-FIND_BENCHMARKS_FLAGS ?= \
-	-type f \
-	-name "$(BENCHMARKS_PATTERN)" \
-	-path "$(ROOT_DIR)/**/$(BENCHMARKS_FOLDER)/**" \
-	-regex "$(BENCHMARKS_FILTER)" \
-	$(FIND_BENCHMARKS_EXCLUDE_FLAGS)
-
-ifneq ($(OS), Darwin)
-	FIND_BENCHMARKS_FLAGS := -regextype posix-extended $(FIND_BENCHMARKS_FLAGS)
+# Define Node environments:
+ifdef NODE_ENV
+	NODE_ENV_BENCHMARK := $(NODE_ENV)
+	NODE_ENV_EXAMPLES := $(NODE_ENV)
+	NODE_ENV_TEST := $(NODE_ENV)
+else
+	NODE_ENV ?=
+	NODE_ENV_BENCHMARK ?= benchmark
+	NODE_ENV_EXAMPLES ?= examples
+	NODE_ENV_TEST ?= test
 endif
 
-# Define a command to list benchmark files:
-FIND_BENCHMARKS_CMD ?= find $(find_kernel_prefix) $(ROOT_DIR) $(FIND_BENCHMARKS_FLAGS)
+# Define whether delete operations should be safe (i.e., deleted items are sent to trash, rather than permanently deleted):
+SAFE_DELETE ?= false
 
-# Define the command flags:
-FIND_EXAMPLES_FLAGS ?= \
-	-type f \
-	-name "$(EXAMPLES_PATTERN)" \
-	-path "$(ROOT_DIR)/**/$(EXAMPLES_FOLDER)/**" \
-	-regex "$(EXAMPLES_FILTER)" \
-	$(FIND_EXAMPLES_EXCLUDE_FLAGS)
-
-ifneq ($(OS), Darwin)
-	FIND_EXAMPLES_FLAGS := -regextype posix-extended $(FIND_EXAMPLES_FLAGS)
+# Define the delete command:
+ifeq ($(SAFE_DELETE), true)
+	# FIXME: -rm -rf
+	DELETE := -rm
+	DELETE_FLAGS := -rf
+else
+	DELETE ?= -rm
+	DELETE_FLAGS ?= -rf
 endif
 
-# Define a command to list example files:
-FIND_EXAMPLES_CMD ?= find $(find_kernel_prefix) $(ROOT_DIR) $(FIND_EXAMPLES_FLAGS)
-
-# Common exclude flags that most recipes should use (Note: order does matter to some degree):
-FIND_COMMON_EXCLUDE_FLAGS ?= \
-	-not -path "$(ROOT_DIR)/.*" \
-	-not -path "$(NODE_MODULES)/*" \
-	-not -path "$(BUILD_DIR)/*" \
-	-not -path "$(REPORTS_DIR)/*" \
-
-# Benchmark exclude flags:
-FIND_BENCHMARKS_EXCLUDE_FLAGS ?= \
-	$(FIND_COMMON_EXCLUDE_FLAGS) \
-	-not -path "$(ROOT_DIR)/**/$(BENCHMARKS_FIXTURES_FOLDER)/*"
-
-# Examples exclude flags:
-FIND_EXAMPLES_EXCLUDE_FLAGS ?= \
-	$(FIND_COMMON_EXCLUDE_FLAGS) \
-	-not -path "$(ROOT_DIR)/**/$(EXAMPLES_FIXTURES_FOLDER)/*"
-
-# Tests exclude flags:
-FIND_TESTS_EXCLUDE_FLAGS ?= \
-	$(FIND_COMMON_EXCLUDE_FLAGS) \
-	-not -path "$(ROOT_DIR)/**/$(TESTS_FIXTURES_FOLDER)/*"
-
-# Define the command flags:
-FIND_TESTS_FLAGS ?= \
-	-type f \
-	-name "$(TESTS_PATTERN)" \
-	-regex "$(TESTS_FILTER)" \
-	$(FIND_TESTS_EXCLUDE_FLAGS)
-
-ifneq ($(OS), Darwin)
-	FIND_TESTS_FLAGS := -regextype posix-extended $(FIND_TESTS_FLAGS)
+# Determine the `open` command:
+ifeq ($(OS), Darwin)
+	OPEN ?= open
+else
+	OPEN ?= xdg-open
 endif
+# TODO: add Windows command
 
-# Define a command to list test files:
-FIND_TESTS_CMD ?= find $(find_kernel_prefix) $(ROOT_DIR) $(FIND_TESTS_FLAGS)
+# Define the command for `node`:
+NODE ?= node
 
-# Define command-line flags for finding test directories for instrumented source code:
-FIND_ISTANBUL_TEST_DIRS_FLAGS ?= \
-	-type d \
-	-name "$(TESTS_FOLDER)" \
-	-regex "$(TESTS_FILTER)"
+# Define the command for `npm`:
+NPM ?= npm
 
-ifneq ($(OS), Darwin)
-	FIND_ISTANBUL_TEST_DIRS_FLAGS := -regextype posix-extended $(FIND_ISTANBUL_TEST_DIRS_FLAGS)
-endif
+# Define the path to a JavaScript test runner.
+#
+# ## Notes
+#
+# -   We reference the `bin` file directly in order to support using `istanbul` for code coverage on Windows (https://github.com/gotwarlost/istanbul#usage-on-windows)
+JAVASCRIPT_TEST ?= $(NODE_MODULES)/tape/bin/tape
 
-# Define the path to the Istanbul executable.
+# Define any command-line options to use when invoking the test runner:
+JAVASCRIPT_TEST_FLAGS ?=
+
+# Define the path to the executable for parsing TAP output:
+TAP_REPORTER ?= $(BIN_DIR)/tap-spec
+
+# Define the path to the Istanbul executable:
 ISTANBUL ?= $(BIN_DIR)/istanbul
 
 # Define which files and directories to exclude from coverage instrumentation:
@@ -245,19 +271,106 @@ ISTANBUL_COVER_FLAGS ?= \
 	--dir $(COVERAGE_DIR) \
 	--report $(ISTANBUL_COVER_REPORT_FORMAT)
 
-# Define the command to generate test coverage reports:
-ISTANBUL_REPORT ?= $(ISTANBUL) report
+# On Mac OSX, in order to use `|` and other regular expression operators, we need to use enhanced regular expression syntax (-E); see https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man7/re_format.7.html#//apple_ref/doc/man/7/re_format.
+ifeq ($(OS), Darwin)
+	find_kernel_prefix := -E
+else
+	find_kernel_prefix :=
+endif
 
-# Define the test coverage report format:
-ISTANBUL_REPORT_FORMAT ?= lcov
+# Common exclude flags that most recipes for finding package files should use (Note: order does matter to some degree):
+FIND_COMMON_EXCLUDE_FLAGS ?= \
+	-not -path "$(ROOT_DIR)/.*" \
+	-not -path "$(NODE_MODULES)/*" \
+	-not -path "$(BUILD_DIR)/*" \
+	-not -path "$(REPORTS_DIR)/*" \
 
-# Define the command-line options to be used when generating a code coverage report:
-ISTANBUL_REPORT_FLAGS ?= \
-	--root $(COVERAGE_DIR) \
-	--dir $(COVERAGE_DIR) \
-	--include '**/coverage*.json'
+# Define exclusion flags to use when searching for benchmark files:
+FIND_BENCHMARKS_EXCLUDE_FLAGS ?= \
+	$(FIND_COMMON_EXCLUDE_FLAGS) \
+	-not -path "$(ROOT_DIR)/**/$(BENCHMARKS_FIXTURES_FOLDER)/*"
 
-# TARGETS #
+# Define flags for finding benchmark files:
+FIND_BENCHMARKS_FLAGS ?= \
+	-type f \
+	-name "$(BENCHMARKS_PATTERN)" \
+	-path "$(ROOT_DIR)/**/$(BENCHMARKS_FOLDER)/**" \
+	-regex "$(BENCHMARKS_FILTER)" \
+	$(FIND_BENCHMARKS_EXCLUDE_FLAGS)
+
+ifneq ($(OS), Darwin)
+	FIND_BENCHMARKS_FLAGS := -regextype posix-extended $(FIND_BENCHMARKS_FLAGS)
+endif
+
+# Define a command to list benchmark files:
+FIND_BENCHMARKS_CMD ?= find $(find_kernel_prefix) $(ROOT_DIR) $(FIND_BENCHMARKS_FLAGS)
+
+# Define exclusion flags to use when searching for examples files:
+FIND_EXAMPLES_EXCLUDE_FLAGS ?= \
+	$(FIND_COMMON_EXCLUDE_FLAGS) \
+	-not -path "$(ROOT_DIR)/**/$(EXAMPLES_FIXTURES_FOLDER)/*"
+
+# Define flags for finding examples files:
+FIND_EXAMPLES_FLAGS ?= \
+	-type f \
+	-name "$(EXAMPLES_PATTERN)" \
+	-path "$(ROOT_DIR)/**/$(EXAMPLES_FOLDER)/**" \
+	-regex "$(EXAMPLES_FILTER)" \
+	$(FIND_EXAMPLES_EXCLUDE_FLAGS)
+
+ifneq ($(OS), Darwin)
+	FIND_EXAMPLES_FLAGS := -regextype posix-extended $(FIND_EXAMPLES_FLAGS)
+endif
+
+# Define a command to list example files:
+FIND_EXAMPLES_CMD ?= find $(find_kernel_prefix) $(ROOT_DIR) $(FIND_EXAMPLES_FLAGS)
+
+# Define exclusion flags to use when searching for test files:
+FIND_TESTS_EXCLUDE_FLAGS ?= \
+	$(FIND_COMMON_EXCLUDE_FLAGS) \
+	-not -path "$(ROOT_DIR)/**/$(TESTS_FIXTURES_FOLDER)/*"
+
+# Define flags for finding test files:
+FIND_TESTS_FLAGS ?= \
+	-type f \
+	-name "$(TESTS_PATTERN)" \
+	-regex "$(TESTS_FILTER)" \
+	$(FIND_TESTS_EXCLUDE_FLAGS)
+
+ifneq ($(OS), Darwin)
+	FIND_TESTS_FLAGS := -regextype posix-extended $(FIND_TESTS_FLAGS)
+endif
+
+# Define a command to list test files:
+FIND_TESTS_CMD ?= find $(find_kernel_prefix) $(ROOT_DIR) $(FIND_TESTS_FLAGS)
+
+
+# RULES #
+
+#/
+# Default target.
+#
+# @example
+# make
+#
+# @example
+# make all
+#/
+all: help
+
+.PHONY: all
+
+#/
+# Prints a `Makefile` help message.
+#
+# @example
+# make help
+#/
+help:
+	$(QUIET) echo 'Read the Makefile to see the list of available commands.'
+	$(QUIET) echo ''
+
+.PHONY: help
 
 #/
 # Prints the runtime value of a `Makefile` variable.
@@ -280,6 +393,38 @@ inspect.%:
 	$(QUIET) echo '$*=$($*)'
 
 #/
+# Runs the project's install sequence.
+#
+# @example
+# make install
+#/
+install:
+	$(NPM) install
+
+.PHONY: install
+
+#/
+# Removes node module dependencies.
+#
+# @example
+# make clean-node
+#/
+clean-node:
+	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(NODE_MODULES)
+
+#/
+# Runs the project's cleanup sequence.
+#
+# @example
+# make clean
+#/
+clean: clean-node clean-cov
+	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(BUILD_DIR)
+	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(REPORTS_DIR)
+
+.PHONY: clean
+
+#/
 # Runs JavaScript benchmarks consecutively.
 #
 # ## Notes
@@ -300,9 +445,9 @@ benchmark: $(NODE_MODULES)
 	$(QUIET) $(FIND_BENCHMARKS_CMD) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r file; do \
 		echo ""; \
 		echo "Running benchmark: $$file"; \
-		NODE_ENV="$(NODE_ENV)" \
-		NODE_PATH="$(node_path)" \
-		$(node) $$file || exit 1; \
+		NODE_ENV="$(NODE_ENV_BENCHMARK)" \
+		NODE_PATH="$(NODE_PATH)" \
+		$(NODE) $$file || exit 1; \
 	done
 
 .PHONY: benchmark
@@ -328,25 +473,38 @@ examples: $(NODE_MODULES)
 	$(QUIET) $(FIND_EXAMPLES_CMD) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r file; do \
 		echo ""; \
 		echo "Running example: $$file"; \
-		NODE_ENV="$(NODE_ENV)" \
-		NODE_PATH="$(node_path)" \
-		$(node) $$file || exit 1; \
+		NODE_ENV="$(NODE_ENV_EXAMPLES)" \
+		NODE_PATH="$(NODE_PATH)" \
+		$(NODE) $$file || exit 1; \
 	done
 
 .PHONY: examples
 
 #/
-# Runs JavaScript unit tests locally.
+# Runs JavaScript tests consecutively.
 #
-# This target runs JavaScript unit tests locally.
+# ## Notes
+#
+# -   This rule is useful when wanting to glob for JavaScript test files (e.g., run all JavaScript tests for a particular package).
+# -   This rule **assumes** that test files can be run using Node.js.
+#
+#
+# @param {string} [TEST_FILTER] - file path pattern (e.g., `.*/math/base/special/abs/.*`)
+#
+# @example
+# make test
+#
+# @example
+# make test TESTS_FILTER=".*/strided/common/.*"
 #/
 test: $(NODE_MODULES)
 	$(QUIET) $(FIND_TESTS_CMD) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r test; do \
 		echo ''; \
 		echo "Running test: $$test"; \
-		NODE_ENV="$(NODE_ENV)" \
-		NODE_PATH="$(node_path)" \
+		NODE_ENV="$(NODE_ENV_TEST)" \
+		NODE_PATH="$(NODE_PATH)" \
 		$(JAVASCRIPT_TEST) \
+			$(JAVASCRIPT_TEST_FLAGS) \
 			$$test \
 		| $(TAP_REPORTER) || exit 1; \
 	done
@@ -354,47 +512,23 @@ test: $(NODE_MODULES)
 .PHONY: test
 
 #/
-# Generates a JavaScript test summary.
-#
-# This target runs JavaScript unit tests and aggregates TAP output as a test summary.
-#/
-test-summary: $(NODE_MODULES)
-	$(QUIET) $(FIND_TESTS_CMD) | grep '^[\/]\|^[a-zA-Z]:[/\]' | while read -r test; do \
-		echo ''; \
-		echo "Running test: $$test"; \
-		NODE_ENV="$(NODE_ENV)" \
-		NODE_PATH="$(node_path)" \
-		$(JAVASCRIPT_TEST) \
-			$$test \
-		| $(TAP_SUMMARY) || exit 1; \
-	done
-
-.PHONY: test-summary
-
-#/
 # Runs unit tests and generate a test coverage report.
+#
+# @example
+# make test-cov
 #/
 test-cov: clean-cov
-	$(QUIET) NODE_ENV="$(NODE_ENV)" NODE_PATH="$(node_path)" $(MAKE) -f $(this_file) test-istanbul
+	$(QUIET) NODE_ENV="$(NODE_ENV_TEST)" \
+	NODE_PATH="$(NODE_PATH)" \
+	$(ISTANBUL_COVER) $(ISTANBUL_COVER_FLAGS) $(JAVASCRIPT_TEST) -- $$( $(FIND_TESTS_CMD) )
 
 .PHONY: test-cov
 
 #/
-# Remove a coverage directory.
+# Removes a test coverage directory.
 #
-# This target cleans up a JavaScript coverage directory by removing it entirely.
+# @example
+# make clean-cov
 #/
 clean-cov:
 	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(COVERAGE_DIR)
-
-#/
-# Run unit tests and generate a test coverage report.
-#
-# This target instruments source code, runs unit tests, and outputs a test coverage report.
-#/
-test-istanbul: $(NODE_MODULES)
-	$(QUIET) NODE_ENV="$(NODE_ENV)" \
-	NODE_PATH="$(node_path)" \
-	$(ISTANBUL_COVER) $(ISTANBUL_COVER_FLAGS) $(JAVASCRIPT_TEST) -- $$( $(FIND_TESTS_CMD) )
-
-.PHONY: test-istanbul
