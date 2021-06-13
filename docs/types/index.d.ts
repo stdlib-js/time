@@ -22,21 +22,21 @@
 /* tslint:disable:max-file-line-count */
 
 import constants = require( '@stdlib/constants/time' );
-import dayOfQuarter = require( '@stdlib/time/day-of-quarter' );
-import dayOfYear = require( '@stdlib/time/day-of-year' );
-import daysInMonth = require( '@stdlib/time/days-in-month' );
-import daysInYear = require( '@stdlib/time/days-in-year' );
-import hoursInMonth = require( '@stdlib/time/hours-in-month' );
-import hoursInYear = require( '@stdlib/time/hours-in-year' );
-import isoWeeksInYear = require( '@stdlib/time/iso-weeks-in-year' );
-import minutesInMonth = require( '@stdlib/time/minutes-in-month' );
-import minutesInYear = require( '@stdlib/time/minutes-in-year' );
-import now = require( '@stdlib/time/now' );
-import quarterOfYear = require( '@stdlib/time/quarter-of-year' );
-import secondsInMonth = require( '@stdlib/time/seconds-in-month' );
-import secondsInYear = require( '@stdlib/time/seconds-in-year' );
-import tic = require( '@stdlib/time/tic' );
-import toc = require( '@stdlib/time/toc' );
+import dayOfQuarter = require( './../../day-of-quarter' );
+import dayOfYear = require( './../../day-of-year' );
+import daysInMonth = require( './../../days-in-month' );
+import daysInYear = require( './../../days-in-year' );
+import hoursInMonth = require( './../../hours-in-month' );
+import hoursInYear = require( './../../hours-in-year' );
+import isoWeeksInYear = require( './../../iso-weeks-in-year' );
+import minutesInMonth = require( './../../minutes-in-month' );
+import minutesInYear = require( './../../minutes-in-year' );
+import now = require( './../../now' );
+import quarterOfYear = require( './../../quarter-of-year' );
+import secondsInMonth = require( './../../seconds-in-month' );
+import secondsInYear = require( './../../seconds-in-year' );
+import tic = require( './../../tic' );
+import toc = require( './../../toc' );
 
 /**
 * Interface describing the `time` namespace.

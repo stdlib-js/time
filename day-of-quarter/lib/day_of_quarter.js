@@ -23,8 +23,8 @@
 var isDateObject = require( '@stdlib/assert/is-date-object' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
-var dayOfYear = require( '@stdlib/time/day-of-year' );
-var quarterOfYear = require( '@stdlib/time/quarter-of-year' );
+var dayOfYear = require( './../../day-of-year' );
+var quarterOfYear = require( './../../quarter-of-year' );
 var isLeapYear = require( '@stdlib/assert/is-leap-year' );
 
 

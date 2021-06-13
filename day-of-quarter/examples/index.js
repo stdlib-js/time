@@ -18,7 +18,7 @@
 
 'use strict';
 
-var quarterOfYear = require( '@stdlib/time/quarter-of-year' );
+var quarterOfYear = require( './../../quarter-of-year' );
 var dayOfQuarter = require( './../lib' );
 
 var months;

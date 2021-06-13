@@ -21,7 +21,7 @@
 // MODULES //
 
 var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer-array' ).primitives;
-var tic = require( '@stdlib/time/tic' );
+var tic = require( './../../tic' );
 
 
 // MAIN //

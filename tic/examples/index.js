@@ -18,7 +18,7 @@
 
 'use strict';
 
-var toc = require( '@stdlib/time/toc' );
+var toc = require( './../../toc' );
 var tic = require( './../lib' );
 
 var start = tic();

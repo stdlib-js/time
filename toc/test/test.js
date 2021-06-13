@@ -23,7 +23,7 @@
 var tape = require( 'tape' );
 var proxyquire = require( 'proxyquire' );
 var isIntegerArray = require( '@stdlib/assert/is-integer-array' );
-var tic = require( '@stdlib/time/tic' );
+var tic = require( './../../tic' );
 var toc = require( './../lib' );
 
 

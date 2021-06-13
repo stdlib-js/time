@@ -23,7 +23,7 @@
 var isDateObject = require( '@stdlib/assert/is-date-object' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
-var daysInMonth = require( '@stdlib/time/days-in-month' );
+var daysInMonth = require( './../../days-in-month' );
 var isLeapYear = require( '@stdlib/assert/is-leap-year' );
 var lowercase = require( '@stdlib/string/lowercase' );
 var MONTHS = require( './months.json' );
