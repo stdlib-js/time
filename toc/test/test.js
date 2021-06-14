@@ -106,7 +106,7 @@ tape( 'the function returns a high-resolution time difference', function test( t
 	var toc;
 
 	toc = proxyquire( './../lib/toc.js', {
-		'@stdlib/time/tic': mock
+		'./../../tic': mock
 	});
 
 	// Zero delta:
