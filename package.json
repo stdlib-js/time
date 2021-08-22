@@ -1,6 +1,6 @@
 {
   "name": "@stdlib/time",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Standard library time utilities.",
   "license": "Apache-2.0",
   "author": {
@@ -15,6 +15,7 @@
   ],
   "main": "./lib",
   "directories": {
+    "doc": "./docs",
     "example": "./examples",
     "lib": "./lib",
     "test": "./test"
@@ -34,16 +35,16 @@
     "url": "https://github.com/stdlib-js/stdlib/issues"
   },
   "dependencies": {
-    "@stdlib/assert": "^0.0.x",
-    "@stdlib/cli": "^0.0.x",
-    "@stdlib/constants": "^0.0.x",
-    "@stdlib/fs": "^0.0.x",
-    "@stdlib/math": "^0.0.x",
-    "@stdlib/string": "^0.0.x",
-    "@stdlib/utils": "^0.0.x"
+    "@stdlib/assert": "github:stdlib-js/assert#main",
+    "@stdlib/cli": "github:stdlib-js/cli#main",
+    "@stdlib/constants": "github:stdlib-js/constants#main",
+    "@stdlib/fs": "github:stdlib-js/fs#main",
+    "@stdlib/math": "github:stdlib-js/math#main",
+    "@stdlib/string": "github:stdlib-js/string#main",
+    "@stdlib/utils": "github:stdlib-js/utils#main"
   },
   "devDependencies": {
-    "@stdlib/process": "^0.0.x",
+    "@stdlib/process": "github:stdlib-js/process",
     "proxyquire": "^2.0.0",
     "tape": "git+https://github.com/kgryte/tape.git#fix/globby",
     "istanbul": "^0.4.1",
