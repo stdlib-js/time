@@ -41,7 +41,8 @@
     "@stdlib/fs": "github:stdlib-js/fs#main",
     "@stdlib/math": "github:stdlib-js/math#main",
     "@stdlib/string": "github:stdlib-js/string#main",
-    "@stdlib/utils": "github:stdlib-js/utils#main"
+    "@stdlib/utils": "github:stdlib-js/utils#main",
+    "@stdlib/error-tools-fmtprodmsg": "^0.0.x"
   },
   "devDependencies": {
     "@stdlib/process": "github:stdlib-js/process",
