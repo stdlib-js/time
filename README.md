@@ -53,7 +53,9 @@ If no recognized module system is present, access bundle contents via the global
 ```html
 <script type="text/javascript">
 (function () {
+(function () {
     window.time;
+})();
 })();
 </script>
 ```
@@ -144,9 +146,11 @@ function onTimeout() {
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/time@umd/browser.js"></script>
 <script type="text/javascript">
 (function () {
+(function () {
 
 console.log( objectKeys( time ) );
 
+})();
 })();
 </script>
 </body>
