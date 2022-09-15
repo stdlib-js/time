@@ -26,41 +26,41 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 var lowercase = require( '@stdlib/string/lowercase' );
 var isLeapYear = require( '@stdlib/assert/is-leap-year' );
 var format = require( '@stdlib/string/format' );
-var SECONDS_IN_DAY = require( '@stdlib/constants/time/seconds-in-day' );
-var SECONDS_IN_MONTH = require( './seconds.json' );
+var currentYear = require( './../../current-year' );
+var DAYS_IN_MONTH = require( './days.json' );
 
 
 // MAIN //
 
 /**
-* Returns the number of seconds in a month.
+* Returns the number of days in a month.
 *
-* @param {(string|Date|integer)} [month] - month
+* @param {(string|Date|integer)} [month] - month (or Date)
 * @param {integer} [year] - year
 * @throws {TypeError} first argument must be either a string, integer, or `Date` object
 * @throws {Error} must provide a recognized month
 * @throws {RangeError} an integer month argument must be on the interval `[1,12]`
 * @throws {TypeError} second argument must be an integer
-* @returns {integer} seconds in a month
+* @returns {integer} days in a month
 *
 * @example
-* var num = secondsInMonth();
+* var num = daysInMonth();
 * // returns <number>
 *
 * @example
-* var num = secondsInMonth( 2 );
+* var num = daysInMonth( 2 );
 * // returns <number>
 *
 * @example
-* var num = secondsInMonth( 2, 2016 );
-* // returns 2505600
+* var num = daysInMonth( 2, 2016 );
+* // returns 29
 *
 * @example
-* var num = secondsInMonth( 2, 2017 );
-* // returns 2419200
+* var num = daysInMonth( 2, 2017 );
+* // returns 28
 */
-function secondsInMonth( month, year ) {
-	var secs;
+function daysInMonth( month, year ) {
+	var days;
 	var mon;
 	var yr;
 	var d;
@@ -76,7 +76,7 @@ function secondsInMonth( month, year ) {
 			yr = d.getFullYear();
 		} else if ( isString( month ) || isInteger( month ) ) {
 			// Note: cannot cache as application may cross over into a new year:
-			yr = ( new Date() ).getFullYear();
+			yr = currentYear();
 			mon = month;
 		} else {
 			throw new TypeError( format( 'invalid argument. First argument must be either a string, integer, or Date object. Value: `%s`.', month ) );
@@ -95,18 +95,17 @@ function secondsInMonth( month, year ) {
 		throw new RangeError( format( 'invalid argument. An integer month value must be on the interval: [1, 12]. Value: `%s`.', mon ) );
 	}
 	mon = lowercase( mon.toString() );
-	secs = SECONDS_IN_MONTH[ mon ];
-	if ( secs === void 0 ) {
+	days = DAYS_IN_MONTH[ mon ];
+	if ( days === void 0 ) {
 		throw new Error( format( 'invalid argument. Must provide a recognized month. Value: `%s`.', mon ) );
 	}
-	// Check if February during a leap year...
-	if ( secs === 2419200 && isLeapYear( yr ) ) {
-		secs += SECONDS_IN_DAY;
+	if ( days === 28 && isLeapYear( yr ) ) {
+		days += 1;
 	}
-	return secs;
+	return days;
 }
 
 
 // EXPORTS //
 
-module.exports = secondsInMonth;
+module.exports = daysInMonth;

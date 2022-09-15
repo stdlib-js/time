@@ -22,38 +22,54 @@
 
 var isDateObject = require( '@stdlib/assert/is-date-object' );
 var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
-var isLeapYear = require( '@stdlib/assert/is-leap-year' );
 var format = require( '@stdlib/string/format' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var currentYear = require( './../../current-year' );
 
 
 // VARIABLES //
 
-var NON_LEAP_YEAR = 31536000|0; // 365 * 86400
-var LEAP_YEAR = 31622400|0; // 366 * 86400
+var SHORT_YEAR = 52;
+var LONG_YEAR = 53;
+
+
+// FUNCTIONS //
+
+/**
+* Formula for determining if a year is "long" or "short".
+*
+* @private
+* @param {integer} yr - year
+* @returns {integer} result
+*/
+function p( yr ) {
+	var v = yr + floor( yr/4 ) - floor( yr/100 ) + floor( yr/400 );
+	return v % 7;
+}
 
 
 // MAIN //
 
 /**
-* Returns the number of seconds in a year.
+* Returns the number of ISO weeks in a year.
 *
 * @param {(integer|Date)} value - year or `Date` object
 * @throws {TypeError} must provide either an integer or a `Date` object
-* @returns {integer} number of seconds in a year
+* @returns {integer} number of ISO weeks in a year
 *
 * @example
-* var num = secondsInYear();
+* var num = isoWeeksInYear();
 * // returns <number>
 *
 * @example
-* var num = secondsInYear( 2016 );
-* // returns 31622400
+* var num = isoWeeksInYear( 2015 );
+* // returns 53
 *
 * @example
-* var num = secondsInYear( 2017 );
-* // returns 31536000
+* var num = isoWeeksInYear( 2017 );
+* // returns 52
 */
-function secondsInYear( value ) {
+function isoWeeksInYear( value ) {
 	var yr;
 	if ( arguments.length ) {
 		if ( isDateObject( value ) ) {
@@ -65,15 +81,15 @@ function secondsInYear( value ) {
 		}
 	} else {
 		// Note: cannot cache as application could cross over into a new year:
-		yr = ( new Date() ).getFullYear();
+		yr = currentYear();
 	}
-	if ( isLeapYear( yr ) ) {
-		return LEAP_YEAR;
+	if ( p( yr ) === 4 || p( yr-1 ) === 3 ) {
+		return LONG_YEAR;
 	}
-	return NON_LEAP_YEAR;
+	return SHORT_YEAR;
 }
 
 
 // EXPORTS //
 
-module.exports = secondsInYear;
+module.exports = isoWeeksInYear;

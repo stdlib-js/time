@@ -23,37 +23,38 @@
 var isDateObject = require( '@stdlib/assert/is-date-object' );
 var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 var isLeapYear = require( '@stdlib/assert/is-leap-year' );
+var currentYear = require( './../../current-year' );
 var format = require( '@stdlib/string/format' );
 
 
 // VARIABLES //
 
-var NON_LEAP_YEAR = 365;
-var LEAP_YEAR = 366;
+var NON_LEAP_YEAR = 31536000|0; // 365 * 86400
+var LEAP_YEAR = 31622400|0; // 366 * 86400
 
 
 // MAIN //
 
 /**
-* Returns the number of days in a year.
+* Returns the number of seconds in a year.
 *
 * @param {(integer|Date)} value - year or `Date` object
 * @throws {TypeError} must provide either an integer or a `Date` object
-* @returns {integer} number of days in a year
+* @returns {integer} number of seconds in a year
 *
 * @example
-* var num = daysInYear();
+* var num = secondsInYear();
 * // returns <number>
 *
 * @example
-* var num = daysInYear( 2016 );
-* // returns 366
+* var num = secondsInYear( 2016 );
+* // returns 31622400
 *
 * @example
-* var num = daysInYear( 2017 );
-* // returns 365
+* var num = secondsInYear( 2017 );
+* // returns 31536000
 */
-function daysInYear( value ) {
+function secondsInYear( value ) {
 	var yr;
 	if ( arguments.length ) {
 		if ( isDateObject( value ) ) {
@@ -65,7 +66,7 @@ function daysInYear( value ) {
 		}
 	} else {
 		// Note: cannot cache as application could cross over into a new year:
-		yr = ( new Date() ).getFullYear();
+		yr = currentYear();
 	}
 	if ( isLeapYear( yr ) ) {
 		return LEAP_YEAR;
@@ -76,4 +77,4 @@ function daysInYear( value ) {
 
 // EXPORTS //
 
-module.exports = daysInYear;
+module.exports = secondsInYear;
