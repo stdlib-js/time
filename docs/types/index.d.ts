@@ -22,6 +22,8 @@
 /* tslint:disable:max-file-line-count */
 
 import constants = require( '@stdlib/constants/time' );
+import base = require( './../../base' );
+import currentYear = require( './../../current-year' );
 import dayOfQuarter = require( './../../day-of-quarter' );
 import dayOfYear = require( './../../day-of-year' );
 import daysInMonth = require( './../../days-in-month' );
@@ -46,6 +48,22 @@ interface Namespace {
 	* Time constants.
 	*/
 	constants: typeof constants;
+
+	/**
+	* Base (i.e., lower-level) time utilities.
+	*/
+	base: typeof base;
+
+	/**
+	* Returns the current year.
+	*
+	* @returns current year
+	*
+	* @example
+	* var y = ns.currentYear();
+	* // returns <number>
+	*/
+	currentYear: typeof currentYear;
 
 	/**
 	* Returns the day of the quarter.
