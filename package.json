@@ -41,12 +41,14 @@
     "@stdlib/constants": "github:stdlib-js/constants#main",
     "@stdlib/fs": "github:stdlib-js/fs#main",
     "@stdlib/math": "github:stdlib-js/math#main",
+    "@stdlib/process": "github:stdlib-js/process#main",
+    "@stdlib/regexp": "github:stdlib-js/regexp#main",
+    "@stdlib/streams": "github:stdlib-js/streams#main",
     "@stdlib/string": "github:stdlib-js/string#main",
     "@stdlib/utils": "github:stdlib-js/utils#main"
   },
   "devDependencies": {
     "@stdlib/bench": "github:stdlib-js/bench",
-    "@stdlib/process": "github:stdlib-js/process",
     "proxyquire": "^2.0.0",
     "tape": "git+https://github.com/kgryte/tape.git#fix/globby",
     "istanbul": "^0.4.1",
