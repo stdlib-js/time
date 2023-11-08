@@ -42,13 +42,18 @@ limitations under the License.
 ## Usage
 
 ```javascript
+import time from 'https://cdn.jsdelivr.net/gh/stdlib-js/time@deno/mod.js';
+```
+The previous example will load the latest bundled code from the deno branch. Alternatively, you may load a specific version by loading the file from one of the [tagged bundles](https://github.com/stdlib-js/time/tags). For example,
+
+```javascript
 import time from 'https://cdn.jsdelivr.net/gh/stdlib-js/time@v0.1.1-deno/mod.js';
 ```
 
 You can also import the following named exports from the package:
 
 ```javascript
-import { base, constants, currentYear, dayOfQuarter, dayOfYear, daysInMonth, daysInYear, duration2ms, hoursInMonth, hoursInYear, isoWeeksInYear, minutesInMonth, minutesInYear, ms2duration, now, quarterOfYear, secondsInMonth, secondsInYear, tic, toc } from 'https://cdn.jsdelivr.net/gh/stdlib-js/time@v0.1.1-deno/mod.js';
+import { base, constants, currentYear, dayOfQuarter, dayOfYear, daysInMonth, daysInYear, duration2ms, hoursInMonth, hoursInYear, isoWeeksInYear, minutesInMonth, minutesInYear, ms2duration, now, quarterOfYear, secondsInMonth, secondsInYear, tic, toc } from 'https://cdn.jsdelivr.net/gh/stdlib-js/time@deno/mod.js';
 ```
 
 #### time
@@ -105,7 +110,7 @@ num = time.hoursInMonth( 2, 2017 );
 <!-- </toc> -->
 
 ```javascript
-import time from 'https://cdn.jsdelivr.net/gh/stdlib-js/time@v0.1.1-deno/mod.js';
+import time from 'https://cdn.jsdelivr.net/gh/stdlib-js/time@deno/mod.js';
 
 var start = time.tic();
 
@@ -131,7 +136,7 @@ function onTimeout() {
 
 ```javascript
 import objectKeys from 'https://cdn.jsdelivr.net/gh/stdlib-js/utils/keys@deno/mod.js';
-import time from 'https://cdn.jsdelivr.net/gh/stdlib-js/time@v0.1.1-deno/mod.js';
+import time from 'https://cdn.jsdelivr.net/gh/stdlib-js/time@deno/mod.js';
 
 console.log( objectKeys( time ) );
 ```
