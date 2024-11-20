@@ -101,8 +101,6 @@ function onTimeout() {
 
 <!-- <related-links> -->
 
-[@stdlib/time/tic]: https://github.com/stdlib-js/time/tree/main/tic
-
 <!-- </related-links> -->
 
 </section>
