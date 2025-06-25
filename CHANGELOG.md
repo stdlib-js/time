@@ -4,15 +4,23 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-03-17)
+## Unreleased (2025-06-25)
 
-<section class="packages">
+<section class="commits">
 
-### Packages
+### Commits
+
+<details>
+
+-   [`8711466`](https://github.com/stdlib-js/stdlib/commit/87114663814e20e5f4c77d7a64dd871b6487aba4) - **test:** address failing tests _(by Athan Reines)_
+-   [`ff97e29`](https://github.com/stdlib-js/stdlib/commit/ff97e29be19b90e74565d410af768774bf96bf2e) - **chore:** update wording from non-negative to nonnegative _(by Philipp Burckhardt)_
+-   [`65ff8cc`](https://github.com/stdlib-js/stdlib/commit/65ff8cc1d90cf8ba6005f32876db0fe266e4b603) - **docs:** fix duplicate definition _(by Athan Reines)_
+
+</details>
 
 </section>
 
-<!-- /.packages -->
+<!-- /.commits -->
 
 <section class="contributors">
 
@@ -26,21 +34,6 @@ A total of 2 people contributed to this release. Thank you to the following cont
 </section>
 
 <!-- /.contributors -->
-
-<section class="commits">
-
-### Commits
-
-<details>
-
--   [`ff97e29`](https://github.com/stdlib-js/stdlib/commit/ff97e29be19b90e74565d410af768774bf96bf2e) - **chore:** update wording from non-negative to nonnegative _(by Philipp Burckhardt)_
--   [`65ff8cc`](https://github.com/stdlib-js/stdlib/commit/65ff8cc1d90cf8ba6005f32876db0fe266e4b603) - **docs:** fix duplicate definition _(by Athan Reines)_
-
-</details>
-
-</section>
-
-<!-- /.commits -->
 
 </section>
 
@@ -60,26 +53,6 @@ No changes reported for this release.
 
 ## 0.3.2 (2024-11-05)
 
-<section class="packages">
-
-### Packages
-
-</section>
-
-<!-- /.packages -->
-
-<section class="contributors">
-
-### Contributors
-
-A total of 1 person contributed to this release. Thank you to this contributor:
-
--   Philipp Burckhardt
-
-</section>
-
-<!-- /.contributors -->
-
 <section class="commits">
 
 ### Commits
@@ -94,6 +67,18 @@ A total of 1 person contributed to this release. Thank you to this contributor:
 </section>
 
 <!-- /.commits -->
+
+<section class="contributors">
+
+### Contributors
+
+A total of 1 person contributed to this release. Thank you to this contributor:
+
+-   Philipp Burckhardt
+
+</section>
+
+<!-- /.contributors -->
 
 </section>
 
@@ -113,27 +98,6 @@ No changes reported for this release.
 
 ## 0.3.0 (2024-08-17)
 
-<section class="packages">
-
-### Packages
-
-</section>
-
-<!-- /.packages -->
-
-<section class="contributors">
-
-### Contributors
-
-A total of 2 people contributed to this release. Thank you to the following contributors:
-
--   Oneday12323
--   Philipp Burckhardt
-
-</section>
-
-<!-- /.contributors -->
-
 <section class="commits">
 
 ### Commits
@@ -148,6 +112,19 @@ A total of 2 people contributed to this release. Thank you to the following cont
 </section>
 
 <!-- /.commits -->
+
+<section class="contributors">
+
+### Contributors
+
+A total of 2 people contributed to this release. Thank you to the following contributors:
+
+-   Oneday12323
+-   Philipp Burckhardt
+
+</section>
+
+<!-- /.contributors -->
 
 </section>
 
@@ -167,26 +144,6 @@ No changes reported for this release.
 
 ## 0.2.0 (2024-02-05)
 
-<section class="packages">
-
-### Packages
-
-</section>
-
-<!-- /.packages -->
-
-<section class="contributors">
-
-### Contributors
-
-A total of 1 person contributed to this release. Thank you to this contributor:
-
--   Philipp Burckhardt
-
-</section>
-
-<!-- /.contributors -->
-
 <section class="commits">
 
 ### Commits
@@ -201,6 +158,18 @@ A total of 1 person contributed to this release. Thank you to this contributor:
 </section>
 
 <!-- /.commits -->
+
+<section class="contributors">
+
+### Contributors
+
+A total of 1 person contributed to this release. Thank you to this contributor:
+
+-   Philipp Burckhardt
+
+</section>
+
+<!-- /.contributors -->
 
 </section>
 
@@ -220,115 +189,9 @@ No changes reported for this release.
 
 ## 0.1.0 (2023-11-08)
 
-<section class="packages">
-
-### Packages
-
-<section class="package" id="time-v0.1.0">
-
-#### [@stdlib/time](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time)
-
-<details>
-
 <section class="features">
 
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-base-v0.1.0">
-
-#### [@stdlib/time/base](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/base)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-base-parse-duration-v0.1.0">
-
-#### [@stdlib/time/base/parse-duration](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/base/parse-duration)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-current-year-v0.1.0">
-
-#### [@stdlib/time/current-year](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/current-year)
-
-<details>
-
-<section class="features">
-
-##### Features
+### Features
 
 -   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
 
@@ -338,597 +201,13 @@ No changes reported for this release.
 
 <section class="bug-fixes">
 
-##### Bug Fixes
+### Bug Fixes
 
 -   [`ff35f38`](https://github.com/stdlib-js/stdlib/commit/ff35f3846e467adce5c8244342a04e2fd4a2ac84) - make CLI scripts executable [(#1111)](https://github.com/stdlib-js/stdlib/pull/1111)
 
 </section>
 
 <!-- /.bug-fixes -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-day-of-quarter-v0.1.0">
-
-#### [@stdlib/time/day-of-quarter](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/day-of-quarter)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-day-of-year-v0.1.0">
-
-#### [@stdlib/time/day-of-year](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/day-of-year)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-days-in-month-v0.1.0">
-
-#### [@stdlib/time/days-in-month](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/days-in-month)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-days-in-year-v0.1.0">
-
-#### [@stdlib/time/days-in-year](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/days-in-year)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-duration2ms-v0.1.0">
-
-#### [@stdlib/time/duration2ms](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/duration2ms)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="bug-fixes">
-
-##### Bug Fixes
-
--   [`ff35f38`](https://github.com/stdlib-js/stdlib/commit/ff35f3846e467adce5c8244342a04e2fd4a2ac84) - make CLI scripts executable [(#1111)](https://github.com/stdlib-js/stdlib/pull/1111)
-
-</section>
-
-<!-- /.bug-fixes -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-hours-in-month-v0.1.0">
-
-#### [@stdlib/time/hours-in-month](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/hours-in-month)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-hours-in-year-v0.1.0">
-
-#### [@stdlib/time/hours-in-year](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/hours-in-year)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-iso-weeks-in-year-v0.1.0">
-
-#### [@stdlib/time/iso-weeks-in-year](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/iso-weeks-in-year)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-minutes-in-month-v0.1.0">
-
-#### [@stdlib/time/minutes-in-month](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/minutes-in-month)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-minutes-in-year-v0.1.0">
-
-#### [@stdlib/time/minutes-in-year](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/minutes-in-year)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-ms2duration-v0.1.0">
-
-#### [@stdlib/time/ms2duration](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/ms2duration)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="bug-fixes">
-
-##### Bug Fixes
-
--   [`ff35f38`](https://github.com/stdlib-js/stdlib/commit/ff35f3846e467adce5c8244342a04e2fd4a2ac84) - make CLI scripts executable [(#1111)](https://github.com/stdlib-js/stdlib/pull/1111)
-
-</section>
-
-<!-- /.bug-fixes -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-now-v0.1.0">
-
-#### [@stdlib/time/now](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/now)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-quarter-of-year-v0.1.0">
-
-#### [@stdlib/time/quarter-of-year](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/quarter-of-year)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-seconds-in-month-v0.1.0">
-
-#### [@stdlib/time/seconds-in-month](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/seconds-in-month)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-seconds-in-year-v0.1.0">
-
-#### [@stdlib/time/seconds-in-year](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/seconds-in-year)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-tic-v0.1.0">
-
-#### [@stdlib/time/tic](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/tic)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-<section class="package" id="time-toc-v0.1.0">
-
-#### [@stdlib/time/toc](https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/time/toc)
-
-<details>
-
-<section class="features">
-
-##### Features
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75) - update minimum TypeScript version
-
-</section>
-
-<!-- /.features -->
-
-<section class="breaking-changes">
-
-##### BREAKING CHANGES
-
--   [`019ac75`](https://github.com/stdlib-js/stdlib/commit/019ac756964f9f829ee64005de17687377762e75): update minimum TypeScript version
-
-</section>
-
-<!-- /.breaking-changes -->
-
-</details>
-
-</section>
-
-<!-- /.package -->
-
-</section>
-
-<!-- /.packages -->
 
 <section class="breaking-changes">
 
@@ -939,18 +218,6 @@ No changes reported for this release.
 </section>
 
 <!-- /.breaking-changes -->
-
-<section class="contributors">
-
-### Contributors
-
-A total of 1 person contributed to this release. Thank you to this contributor:
-
--   Philipp Burckhardt
-
-</section>
-
-<!-- /.contributors -->
 
 <section class="commits">
 
@@ -971,6 +238,18 @@ A total of 1 person contributed to this release. Thank you to this contributor:
 </section>
 
 <!-- /.commits -->
+
+<section class="contributors">
+
+### Contributors
+
+A total of 1 person contributed to this release. Thank you to this contributor:
+
+-   Philipp Burckhardt
+
+</section>
+
+<!-- /.contributors -->
 
 </section>
 
