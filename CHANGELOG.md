@@ -4,7 +4,19 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-06-25)
+## Unreleased (2025-08-01)
+
+<section class="issues">
+
+### Closed Issues
+
+This release closes the following issue:
+
+[#7765](https://github.com/stdlib-js/stdlib/issues/7765)
+
+</section>
+
+<!-- /.issues -->
 
 <section class="commits">
 
@@ -12,6 +24,7 @@
 
 <details>
 
+-   [`f496b9f`](https://github.com/stdlib-js/stdlib/commit/f496b9f783c4cde58ab00b28454ec6269bc46cc8) - **chore:** fix EditorConfig lint errors [(#7779)](https://github.com/stdlib-js/stdlib/pull/7779) _(by Lalit Narayan Yadav)_
 -   [`8711466`](https://github.com/stdlib-js/stdlib/commit/87114663814e20e5f4c77d7a64dd871b6487aba4) - **test:** address failing tests _(by Athan Reines)_
 -   [`ff97e29`](https://github.com/stdlib-js/stdlib/commit/ff97e29be19b90e74565d410af768774bf96bf2e) - **chore:** update wording from non-negative to nonnegative _(by Philipp Burckhardt)_
 -   [`65ff8cc`](https://github.com/stdlib-js/stdlib/commit/65ff8cc1d90cf8ba6005f32876db0fe266e4b603) - **docs:** fix duplicate definition _(by Athan Reines)_
@@ -26,9 +39,10 @@
 
 ### Contributors
 
-A total of 2 people contributed to this release. Thank you to the following contributors:
+A total of 3 people contributed to this release. Thank you to the following contributors:
 
 -   Athan Reines
+-   Lalit Narayan Yadav
 -   Philipp Burckhardt
 
 </section>
