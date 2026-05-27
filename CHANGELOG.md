@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-05-24)
+## Unreleased (2026-05-27)
 
 <section class="issues">
 
@@ -24,6 +24,7 @@ This release closes the following issue:
 
 <details>
 
+-   [`3b5ee6b`](https://github.com/stdlib-js/stdlib/commit/3b5ee6b31ceffc0b8b9d5c96b982c7f46978565a) - **docs:** document `Date` input and add Notes section in `time/iso-weeks-in-year` [(#12313)](https://github.com/stdlib-js/stdlib/pull/12313) _(by Philipp Burckhardt)_
 -   [`c17ecc0`](https://github.com/stdlib-js/stdlib/commit/c17ecc0d9992ac6ca249222ed1ecb1ac270ae9bf) - **docs:** use separate `@example` tags in `time/day-of-quarter` [(#12251)](https://github.com/stdlib-js/stdlib/pull/12251) _(by Philipp Burckhardt)_
 -   [`46f06ad`](https://github.com/stdlib-js/stdlib/commit/46f06ad6754741320241c60ff79ffdf0a7175b07) - **docs:** fix section tags in README files _(by Philipp Burckhardt)_
 -   [`bfc8c3a`](https://github.com/stdlib-js/stdlib/commit/bfc8c3a7bcebf1a049c9e457ab440f540fd5c7a9) - **chore:** use one asterisk for license comment in TS files _(by Philipp Burckhardt)_
