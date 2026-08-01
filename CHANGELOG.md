@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-07-22)
+## Unreleased (2026-08-01)
 
 <section class="commits">
 
@@ -12,6 +12,7 @@
 
 <details>
 
+-   [`5c2e184`](https://github.com/stdlib-js/stdlib/commit/5c2e18438f5cb567e0fb2e192fda3d0cae1ba322) - **chore:** clean-up [(#13832)](https://github.com/stdlib-js/stdlib/pull/13832) _(by Philipp Burckhardt)_
 -   [`f6e00ac`](https://github.com/stdlib-js/stdlib/commit/f6e00acc689e6250be4a03cfc22e31b2fd5f6ece) - **docs:** add notes section to `time/quarter-of-year` [(#12734)](https://github.com/stdlib-js/stdlib/pull/12734) _(by Philipp Burckhardt)_
 -   [`70235a0`](https://github.com/stdlib-js/stdlib/commit/70235a0ffc3e0e4312e71bb1a4e4f4f1ba115909) - **docs:** update `time` TypeScript declarations [(#12621)](https://github.com/stdlib-js/stdlib/pull/12621) _(by stdlib-bot)_
 
